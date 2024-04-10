@@ -1,0 +1,46 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?schema=${POSTGRES_SCHEMA}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    pool:
+      enabled: true
+      initial-size: 3
+      max-size: 9
+  liquibase:
+    enabled: true
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
+    user: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    change-log: classpath:/db/changelog/changelog-master.xml
+    default-schema: context_schema
+  jooq:
+    sql-dialect: postgres
+  quartz:
+    auto-startup: false
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    overwrite-existing-jobs: true
+    properties:
+      org:
+        quartz:
+          dataSource:
+            quartzDataSource:
+              driver: org.postgresql.Driver
+              URL: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
+              user: ${POSTGRES_USERNAME}
+              password: ${POSTGRES_PASSWORD}
+              maxConnections: 1
+              provider: hikaricp
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            isClustered: true
+            dataSource: quartzDataSource
+          scheduler:
+            instanceId: AUTO
+            instanceName: Demo
+          threadPool:
+            threadCount: 1

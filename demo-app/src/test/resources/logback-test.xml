@@ -1,0 +1,26 @@
+<configuration>
+    <property name="LOG_DATEFORMAT_PATTERN" value="HH:mm:ss.SSS"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <!-- Testcontainers -->
+    <!-- https://www.testcontainers.org/supported_docker_environment/logging_config/ -->
+    <logger name="org.testcontainers" level="INFO"/>
+    <logger name="com.github.dockerjava" level="WARN"/>
+    <logger name="com.github.dockerjava.zerodep.shaded.org.apache.hc.client5.http.wire" level="OFF"/>
+
+    <!-- JOOQ -->
+    <!-- https://www.jooq.org/doc/latest/manual/sql-execution/logging/ -->
+    <logger name="org.jooq.tools.LoggerListener" level="DEBUG"/>
+    <logger name="org.jooq" level="DEBUG"/>
+
+    <!-- R2DBC -->
+    <!-- https://github.com/pgjdbc/r2dbc-postgresql -->
+    <logger name="io.r2dbc.postgresql.QUERY" level="DEBUG"/>
+    <logger name="io.r2dbc.postgresql.PARAM" level="DEBUG"/>
+</configuration>
