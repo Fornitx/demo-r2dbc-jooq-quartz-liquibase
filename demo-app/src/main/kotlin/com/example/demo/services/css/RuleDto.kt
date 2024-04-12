@@ -1,3 +1,3 @@
-package com.example.demo.data.css
+package com.example.demo.services.css
 
 data class RuleDto(val enabled: Boolean, val targets: Set<String>)

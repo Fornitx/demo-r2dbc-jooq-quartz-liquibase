@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="fill_iab_service" author="fornit" runOnChange="true">
+        <validCheckSum>any</validCheckSum>
+        <loadUpdateData tableName="iab_service" file="iab_service.csv" primaryKey="id" relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="fill_iab_method" author="fornit" runOnChange="true">
+        <validCheckSum>any</validCheckSum>
+        <loadUpdateData tableName="iab_method" file="iab_method.csv" primaryKey="id" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>

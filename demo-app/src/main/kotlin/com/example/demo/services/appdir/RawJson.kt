@@ -1,4 +1,4 @@
-package com.example.demo.data.appdir
+package com.example.demo.services.appdir
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 

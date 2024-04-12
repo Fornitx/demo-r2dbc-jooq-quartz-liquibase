@@ -1,20 +1,16 @@
-package com.example.demo.data.css
+package com.example.demo.services.appdir
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.OffsetDateTime
 import java.util.*
 
-@Table("asdk_context")
-data class AsdkContextDto(
+@Table("project")
+data class ProjectDto(
     @Id
     val id: UUID? = null,
     val version: Int? = null,
     val createdAt: OffsetDateTime? = null,
     val updatedAt: OffsetDateTime? = null,
-    val msg: String? = null,
-    val status: StatusEnum? = null,
-    val rules: RuleDto? = null,
-    //    private RawJson config;
-//    private val config: Json,
+    val config: RawJson? = null,
 )

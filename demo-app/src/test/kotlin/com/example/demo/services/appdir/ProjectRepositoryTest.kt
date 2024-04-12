@@ -1,4 +1,4 @@
-package com.example.demo.data.appdir
+package com.example.demo.services.appdir
 
 import com.example.demo.AbstractDatabaseTest
 import org.assertj.core.api.Assertions.assertThat

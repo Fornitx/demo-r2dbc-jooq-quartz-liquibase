@@ -1,8 +1,8 @@
-package com.example.demo.data.css
+package com.example.demo.services.appdir
 
 import org.springframework.data.r2dbc.repository.R2dbcRepository
 import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface AsdkContextRepository : R2dbcRepository<AsdkContextDto, UUID>
+interface ProjectRepository : R2dbcRepository<ProjectDto, UUID>

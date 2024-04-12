@@ -1,7 +1,7 @@
-package com.example.demo.data.css;
+package com.example.demo.services.css;
 
 import com.example.demo.AbstractDatabaseTest;
-import com.example.demo.data.css.page.Page;
+import com.example.demo.services.css.page.Page;
 import com.example.demo.jooq.generated.tables.pojos.AsdkContext;
 import lombok.extern.slf4j.Slf4j;
 import org.jooq.JSONB;

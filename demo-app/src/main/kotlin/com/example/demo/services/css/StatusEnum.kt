@@ -1,4 +1,4 @@
-package com.example.demo.data.css
+package com.example.demo.services.css
 
 enum class StatusEnum {
     ONE, TWO, THREE

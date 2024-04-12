@@ -1,4 +1,4 @@
-package com.example.demo.data.css
+package com.example.demo.services.css
 
 import com.example.demo.AbstractDatabaseTest
 import com.example.demo.jooq.generated.tables.pojos.AsdkContext

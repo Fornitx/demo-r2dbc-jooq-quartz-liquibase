@@ -1,4 +1,4 @@
-package com.example.demo.data.css;
+package com.example.demo.services.css;
 
 import com.example.demo.AbstractDatabaseTest;
 import io.r2dbc.postgresql.codec.Json;

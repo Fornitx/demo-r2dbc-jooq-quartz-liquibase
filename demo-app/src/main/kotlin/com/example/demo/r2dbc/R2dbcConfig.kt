@@ -1,6 +1,6 @@
 package com.example.demo.r2dbc
 
-import com.example.demo.data.appdir.RawJson
+import com.example.demo.services.appdir.RawJson
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -69,6 +69,9 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks.withType<Test> {
+    environment("TESTCONTAINERS_CHECKS_DISABLE", true)
+    systemProperty("org.jooq.no-logo", true)
+    systemProperty("org.jooq.no-tips", true)
     useJUnitPlatform()
 }
 
@@ -81,7 +84,7 @@ jooq {
 
     configurations {
         create("main") {
-            generateSchemaSourceOnCompilation.set(true)
+//            generateSchemaSourceOnCompilation.set(true)
 
             jooqConfiguration.apply {
 //                logging = org.jooq.meta.jaxb.Logging.WARN
@@ -109,7 +112,7 @@ jooq {
                         forcedTypes.addAll(
                             listOf(
                                 org.jooq.meta.jaxb.ForcedType().apply {
-                                    userType = "com.example.demo.data.css.StatusEnum"
+                                    userType = "com.example.demo.services.css.StatusEnum"
                                     isEnumConverter = true
                                     includeExpression = """
                                         asdk_context\.status
@@ -117,7 +120,7 @@ jooq {
                                     """.trimIndent()
                                 },
                                 org.jooq.meta.jaxb.ForcedType().apply {
-                                    userType = "com.example.demo.data.css.RuleDto"
+                                    userType = "com.example.demo.services.css.RuleDto"
                                     isJsonConverter = true
                                     includeExpression = """
                                         asdk_context\.rules
@@ -153,7 +156,7 @@ jooq {
 }
 
 tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
-    allInputsDeclared.set(true)
+//    allInputsDeclared.set(true)
     javaExecSpec = Action {
         environment("TESTCONTAINERS_CHECKS_DISABLE", true)
         systemProperty("org.jooq.no-logo", true)
