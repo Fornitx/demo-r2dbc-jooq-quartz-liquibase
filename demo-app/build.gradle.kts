@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
@@ -10,11 +8,13 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
+ext["kotlin-coroutines.version"] = System.getProperty("kotlin_coroutines_version")
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -60,11 +60,9 @@ dependencies {
     jooqGenerator(project(":demo-db"))
 }
 
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs += listOf("-Xjsr305=strict", "-Xemit-jvm-type-annotations")
-        jvmTarget = "21"
+kotlin {
+    compilerOptions {
+        freeCompilerArgs.addAll("-Xjsr305=strict")
     }
 }
 
