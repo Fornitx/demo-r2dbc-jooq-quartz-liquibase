@@ -1,6 +1,6 @@
 package com.example.demo.services.css
 
-import com.example.demo.jooq.generated.tables.pojos.AsdkContext
+import com.example.demo.jooq.tables.pojos.AsdkContext
 import org.jooq.DSLContext
 import org.jooq.kotlin.coroutines.transactionCoroutine
 import org.springframework.stereotype.Service

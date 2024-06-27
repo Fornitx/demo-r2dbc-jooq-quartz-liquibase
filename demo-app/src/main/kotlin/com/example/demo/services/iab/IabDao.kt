@@ -1,9 +1,9 @@
 package com.example.demo.services.iab
 
-import com.example.demo.jooq.generated.tables.pojos.IabMethod
-import com.example.demo.jooq.generated.tables.pojos.IabService
-import com.example.demo.jooq.generated.tables.references.IAB_METHOD
-import com.example.demo.jooq.generated.tables.references.IAB_SERVICE
+import com.example.demo.jooq.tables.pojos.IabMethod
+import com.example.demo.jooq.tables.pojos.IabService
+import com.example.demo.jooq.tables.references.IAB_METHOD
+import com.example.demo.jooq.tables.references.IAB_SERVICE
 import kotlinx.coroutines.reactor.awaitSingle
 import org.jooq.DSLContext
 import reactor.core.publisher.Flux

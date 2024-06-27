@@ -5,6 +5,7 @@ plugins {
     kotlin("plugin.spring")
 
     id("nu.studer.jooq") version "9.0"
+//    id("org.jooq.jooq-codegen-gradle") version "3.19.10"
 }
 
 java {
@@ -17,31 +18,28 @@ val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
 ext["kotlin-coroutines.version"] = System.getProperty("kotlin_coroutines_version")
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
-	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
-	implementation("org.springframework.boot:spring-boot-starter-jooq")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+    implementation("org.springframework.boot:spring-boot-starter-jooq")
     implementation("org.springframework.boot:spring-boot-starter-quartz")
-	implementation("org.springframework.boot:spring-boot-starter-validation")
-	implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-
-//	implementation("org.liquibase:liquibase-core")
-//	implementation("org.springframework:spring-jdbc")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     implementation("io.github.oshai:kotlin-logging-jvm:" + System.getProperty("kotlin_logging_version"))
 
     implementation("org.jooq:jooq-jackson-extensions:$jooqVersion")
     implementation("org.jooq:jooq-kotlin-coroutines:$jooqVersion")
 
-	runtimeOnly("org.postgresql:r2dbc-postgresql")
+    runtimeOnly("org.postgresql:r2dbc-postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
 
     testImplementation("io.projectreactor:reactor-test")
 
@@ -49,14 +47,13 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
     testImplementation("org.testcontainers:junit-jupiter")
-	testImplementation("org.testcontainers:postgresql")
+    testImplementation("org.testcontainers:postgresql")
 //	testImplementation("org.testcontainers:r2dbc")
 
     testImplementation(project(":demo-db"))
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    jooqGenerator("org.slf4j:slf4j-simple")
     jooqGenerator("org.testcontainers:postgresql")
     jooqGenerator(project(":demo-db"))
 }
@@ -83,11 +80,9 @@ jooq {
 
     configurations {
         create("main") {
-//            generateSchemaSourceOnCompilation.set(true)
+//            generateSchemaSourceOnCompilation.set(false )
 
             jooqConfiguration.apply {
-//                logging = org.jooq.meta.jaxb.Logging.WARN
-
                 jdbc.apply {
                     driver = "org.testcontainers.jdbc.ContainerDatabaseDriver"
                     url = "jdbc:tc:postgresql:13-alpine:///test?TC_INITFUNCTION=com.example.demo.LiquibaseInit::init"
@@ -97,7 +92,6 @@ jooq {
 
                 generator.apply {
                     name = "org.jooq.codegen.KotlinGenerator"
-//                    name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.postgres.PostgresDatabase"
                         inputSchema = "context_schema_jooq"
@@ -130,22 +124,15 @@ jooq {
                         )
                     }
                     generate.apply {
-//                        isDeprecated = false
-//                        isRecords = true
-//                        isPojosAsJavaRecordClasses = true
-//                        isFluentSetters = true
                         isImmutablePojos = true
                         isPojos = true
                         isPojosAsKotlinDataClasses = true
                         isPojosEqualsAndHashCode = false
                         isPojosToString = false
                         isSerializablePojos = false
-//                        isDaos = true
-//                        isSpringAnnotations = true
-//                        isSpringDao = true
                     }
                     target.apply {
-                        packageName = "com.example.demo.jooq.generated"
+                        packageName = "com.example.demo.jooq"
                     }
                     strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
                 }
@@ -155,7 +142,6 @@ jooq {
 }
 
 tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
-//    allInputsDeclared.set(true)
     javaExecSpec = Action {
         environment("TESTCONTAINERS_CHECKS_DISABLE", true)
         systemProperty("org.jooq.no-logo", true)

@@ -1,7 +1,7 @@
 package com.example.demo.services.css
 
-import com.example.demo.jooq.generated.tables.AsdkContext.Companion.ASDK_CONTEXT
-import com.example.demo.jooq.generated.tables.pojos.AsdkContext
+import com.example.demo.jooq.tables.AsdkContext.Companion.ASDK_CONTEXT
+import com.example.demo.jooq.tables.pojos.AsdkContext
 import com.example.demo.services.css.page.Page
 import com.example.demo.services.css.page.Slice
 import kotlinx.coroutines.reactor.awaitSingle

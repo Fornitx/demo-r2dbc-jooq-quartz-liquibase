@@ -1,6 +1,6 @@
 package com.example.demo.services.css
 
-import com.example.demo.jooq.generated.tables.pojos.AsdkContext
+import com.example.demo.jooq.tables.pojos.AsdkContext
 import com.example.demo.services.css.page.Page
 import com.example.demo.services.css.page.Slice
 import reactor.core.publisher.Flux

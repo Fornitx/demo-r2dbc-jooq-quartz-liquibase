@@ -1,7 +1,7 @@
 package com.example.demo.services.css
 
 import com.example.demo.AbstractDatabaseTest
-import com.example.demo.jooq.generated.tables.pojos.AsdkContext
+import com.example.demo.jooq.tables.pojos.AsdkContext
 import kotlinx.coroutines.runBlocking
 import org.jooq.exception.DataException
 import org.junit.jupiter.api.AfterEach
