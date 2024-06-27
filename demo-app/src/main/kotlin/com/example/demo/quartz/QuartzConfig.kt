@@ -1,6 +1,11 @@
 package com.example.demo.quartz
 
-import org.quartz.*
+import org.quartz.Job
+import org.quartz.JobBuilder
+import org.quartz.JobDetail
+import org.quartz.SimpleScheduleBuilder
+import org.quartz.SimpleTrigger
+import org.quartz.TriggerBuilder
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.time.Duration

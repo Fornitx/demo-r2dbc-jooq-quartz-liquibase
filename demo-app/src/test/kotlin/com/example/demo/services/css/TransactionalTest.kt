@@ -4,7 +4,11 @@ import com.example.demo.AbstractDatabaseTest
 import com.example.demo.jooq.generated.tables.pojos.AsdkContext
 import kotlinx.coroutines.runBlocking
 import org.jooq.exception.DataException
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.r2dbc.BadSqlGrammarException
