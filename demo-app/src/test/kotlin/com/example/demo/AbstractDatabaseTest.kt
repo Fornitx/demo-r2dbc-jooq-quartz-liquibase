@@ -11,14 +11,8 @@ import org.springframework.r2dbc.core.DatabaseClient
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName
 import org.testcontainers.utility.TestcontainersConfiguration
-import kotlin.reflect.jvm.jvmName
 
-abstract class AbstractDatabaseTest {
-    //    @Autowired
-    //    protected DataSource dataSource;
-    //    @Autowired
-    //    protected JdbcTemplate jdbcTemplate;
-
+abstract class AbstractDatabaseTest : AbstractTest() {
     // R2DBC
     @Autowired
     protected lateinit var databaseClient: DatabaseClient
@@ -30,15 +24,13 @@ abstract class AbstractDatabaseTest {
     @Autowired
     protected lateinit var dslContext: DSLContext
 
-    protected val log = KotlinLogging.logger(this::class.jvmName)
-
     companion object {
-        private val log = KotlinLogging.logger(this::class.jvmName)
-
-        private val tcConfig = TestcontainersConfiguration.getInstance()
+        private val log = KotlinLogging.logger {}
 
         protected val postgresContainer: PostgreSQLContainer<*> = PostgreSQLContainer(
-            DockerImageName.parse(tcConfig.getEnvVarOrProperty("postgres.container.image", null))
+            DockerImageName.parse(
+                TestcontainersConfiguration.getInstance().getEnvVarOrProperty("postgres.container.image", null)
+            )
                 .asCompatibleSubstituteFor("postgres")
         )
             .withDatabaseName("postgres")
@@ -62,12 +54,12 @@ abstract class AbstractDatabaseTest {
                 "POSTGRES_PORT",
                 postgresContainer.getMappedPort(PostgreSQLContainer.POSTGRESQL_PORT).toString()
             )
-            System.setProperty("POSTGRES_DATABASE", postgresContainer.getDatabaseName())
+            System.setProperty("POSTGRES_DATABASE", postgresContainer.databaseName)
             System.setProperty("POSTGRES_SCHEMA", "context_schema")
-            System.setProperty("POSTGRES_USERNAME", postgresContainer.getUsername())
-            System.setProperty("POSTGRES_PASSWORD", postgresContainer.getPassword())
+            System.setProperty("POSTGRES_USERNAME", postgresContainer.username)
+            System.setProperty("POSTGRES_PASSWORD", postgresContainer.password)
 
-            log.info("\nPostgres container started: {}", postgresContainer.getJdbcUrl())
+            log.info("\nPostgres container started: {}", postgresContainer.jdbcUrl)
         }
     }
 }

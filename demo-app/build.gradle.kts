@@ -38,24 +38,25 @@ dependencies {
     implementation("org.jooq:jooq-jackson-extensions:$jooqVersion")
     implementation("org.jooq:jooq-kotlin-coroutines:$jooqVersion")
 
-	runtimeOnly("org.postgresql:postgresql")
 	runtimeOnly("org.postgresql:r2dbc-postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
 
     testImplementation("io.projectreactor:reactor-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
     testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.testcontainers:postgresql")
-	testImplementation("org.testcontainers:r2dbc")
+//	testImplementation("org.testcontainers:r2dbc")
 
     testImplementation(project(":demo-db"))
 
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     jooqGenerator("org.slf4j:slf4j-simple")
-    jooqGenerator("org.postgresql:postgresql")
     jooqGenerator("org.testcontainers:postgresql")
     jooqGenerator(project(":demo-db"))
 }
@@ -129,16 +130,16 @@ jooq {
                         )
                     }
                     generate.apply {
-
 //                        isDeprecated = false
 //                        isRecords = true
-//                        isImmutablePojos = true
 //                        isPojosAsJavaRecordClasses = true
-//                        isPojosEqualsAndHashCode = false
-//                        isPojosToString = false
 //                        isFluentSetters = true
+                        isImmutablePojos = true
                         isPojos = true
                         isPojosAsKotlinDataClasses = true
+                        isPojosEqualsAndHashCode = false
+                        isPojosToString = false
+                        isSerializablePojos = false
 //                        isDaos = true
 //                        isSpringAnnotations = true
 //                        isSpringDao = true
