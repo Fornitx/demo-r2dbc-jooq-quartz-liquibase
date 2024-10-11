@@ -13,7 +13,8 @@ class RawSqlQueriesTest : AbstractDatabaseTest() {
         "select version()",
         "select gen_random_uuid()",
         "select * from databasechangelog",
-        "select unnest(array['Test_1', 'test_2', 'TEST_3']) as x order by x"
+        "select unnest(array['Test_1', 'test_2', 'TEST_3']) as x order by x",
+        "select unnest(array['1', null, '2']) as x order by x",
     )
 
     @ParameterizedTest
