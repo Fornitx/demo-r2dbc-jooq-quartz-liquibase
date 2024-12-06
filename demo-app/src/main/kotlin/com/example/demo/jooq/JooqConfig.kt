@@ -1,7 +1,7 @@
 package com.example.demo.jooq
 
-import com.example.demo.services.css.AsdkContextDaoImpl
-import com.example.demo.services.iab.IabDao
+import com.example.demo.services.back.BackDao
+import com.example.demo.services.context.SdkContextDaoImpl
 import io.r2dbc.spi.ConnectionFactory
 import org.jooq.DSLContext
 import org.jooq.impl.DSL
@@ -21,8 +21,8 @@ class JooqConfig {
     }
 
     @Bean
-    fun asdkContextDao(dslContext: DSLContext) = AsdkContextDaoImpl(dslContext)
+    fun asdkContextDao(dslContext: DSLContext) = SdkContextDaoImpl(dslContext)
 
     @Bean
-    fun iabDao(dslContext: DSLContext) = IabDao(dslContext)
+    fun iabDao(dslContext: DSLContext) = BackDao(dslContext)
 }

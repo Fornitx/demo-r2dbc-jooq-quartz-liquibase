@@ -13,16 +13,18 @@ spring:
     url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
     user: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
-    change-log: classpath:/db/changelog/changelog-master.xml
-    default-schema: context_schema
+    change-log: "file:../etc/db/changelog/changelog-master.xml"
+    default-schema: ${POSTGRES_SCHEMA}
   jooq:
     sql-dialect: postgres
   quartz:
     auto-startup: false
     job-store-type: jdbc
     jdbc:
-      initialize-schema: never
-    overwrite-existing-jobs: true
+      initialize-schema: always
+#      schema: classpath:org/quartz/impl/jdbcjobstore/tables_@@platform@@.sql
+#      schema: ${POSTGRES_SCHEMA}
+    overwrite-existing-jobs: false
     properties:
       org:
         quartz:

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="liquibase.quartz.init.xml" relativeToChangelogFile="true"/>
+    <include file="create_tables_project.sql" relativeToChangelogFile="true"/>
+    <include file="create_tables_context.sql" relativeToChangelogFile="true"/>
+    <include file="create_tables_back.sql" relativeToChangelogFile="true"/>
+    <include file="fill_tables_back.xml" relativeToChangelogFile="true"/>
+
+    <changeSet id="tagDatabase-1.0" author="fornit">
+        <tagDatabase tag="version_1.0"/>
+    </changeSet>
+</databaseChangeLog>

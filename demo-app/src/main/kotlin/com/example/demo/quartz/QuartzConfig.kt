@@ -13,7 +13,7 @@ import java.time.Duration
 @Configuration
 class QuartzConfig {
     @Bean
-    fun jobDetail() = newJobDetail("Qrtz_JobDetail1", DemoJob::class.java)
+    fun jobDetail1() = newJobDetail("Qrtz_JobDetail1", DemoJob::class.java)
 
     @Bean
     fun demoJobService() = DemoJobService()
