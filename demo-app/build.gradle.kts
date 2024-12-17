@@ -5,7 +5,7 @@ plugins {
 }
 
 val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
-require(jooqVersion == libs.versions.jooq.get()) { "jooqVersion not synchronized" }
+require(jooqVersion == libs.versions.jooq.get()) { "jooqVersion not synchronized with Spring Boot" }
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -26,8 +26,9 @@ dependencies {
     implementation("org.jooq:jooq-jackson-extensions:$jooqVersion")
     implementation("org.jooq:jooq-kotlin-coroutines:$jooqVersion")
 
-    implementation(project(":demo-db-old"))
+    implementation(project(":demo-db:demo-db-jooq-old"))
 
+    runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.postgresql:r2dbc-postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -43,12 +44,8 @@ dependencies {
 //	testImplementation("org.testcontainers:r2dbc")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    testRuntimeOnly("org.postgresql:postgresql")
     testRuntimeOnly("org.liquibase:liquibase-core")
-
-//    jooqGenerator("org.testcontainers:postgresql")
-//    jooqGenerator("ch.qos.logback:logback-classic")
-//    jooqGenerator(project(":demo-db-old"))
+    testRuntimeOnly(project(":demo-db:demo-db-liquibase"))
 }
 
 tasks.withType<Test> {
@@ -61,75 +58,3 @@ tasks.withType<Test> {
 tasks.jar {
     enabled = false
 }
-
-//jooq {
-//    version.set(jooqVersion)
-//
-//    configurations {
-//        create("main") {
-//            generateSchemaSourceOnCompilation.set(true)
-//
-//            jooqConfiguration.apply {
-//                jdbc.apply {
-//                    driver = "org.testcontainers.jdbc.ContainerDatabaseDriver"
-//                    url = "jdbc:tc:postgresql:17-alpine:///test?TC_INITFUNCTION=com.example.demo.LiquibaseInit::init"
-//                    user = "test"
-//                    password = "test"
-//                }
-//
-//                generator.apply {
-//                    name = "org.jooq.codegen.KotlinGenerator"
-//                    database.apply {
-//                        name = "org.jooq.meta.postgres.PostgresDatabase"
-//                        inputSchema = "context_schema_jooq"
-//                        isOutputSchemaToDefault = true
-//                        includes = ".*"
-//                        excludes = "databasechangelog.*|qrtz.*"
-//
-//                        forcedTypes.addAll(
-//                            listOf(
-//                                org.jooq.meta.jaxb.ForcedType().apply {
-//                                    userType = "com.example.demo.services.css.StatusEnum"
-//                                    isEnumConverter = true
-//                                    includeExpression = """
-//                                        asdk_context\.status
-//                                        | asdk_context_history\.status
-//                                    """.trimIndent()
-//                                },
-//                                org.jooq.meta.jaxb.ForcedType().apply {
-//                                    userType = "com.example.demo.services.css.RuleDto"
-//                                    isJsonConverter = true
-//                                    includeExpression = """
-//                                        asdk_context\.rules
-//                                        | asdk_context_history\.rules
-//                                    """.trimIndent()
-//                                },
-//                            )
-//                        )
-//                    }
-//                    generate.apply {
-//                        isImmutablePojos = true
-//                        isPojos = true
-//                        isPojosAsKotlinDataClasses = true
-//                        isPojosEqualsAndHashCode = false
-//                        isPojosToString = false
-//                        isSerializablePojos = false
-//                    }
-//                    target.apply {
-//                        packageName = "com.example.demo.jooq"
-//                    }
-//                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") {
-//    allInputsDeclared.set(true)
-//    javaExecSpec = Action {
-//        environment("TESTCONTAINERS_CHECKS_DISABLE", true)
-//        systemProperty("org.jooq.no-logo", true)
-//        systemProperty("org.jooq.no-tips", true)
-//    }
-//}

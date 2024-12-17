@@ -23,9 +23,7 @@ class RawSqlQueriesTest : AbstractDatabaseTest() {
         val result = databaseClient.sql(sql).fetch().all().collectList().block()!!
         log.info(
             "result =\n{}",
-            result.asSequence()
-                .map { it.toString() }
-                .joinToString(System.lineSeparator())
+            result.joinToString(System.lineSeparator())
         )
     }
 }

@@ -1,5 +1,4 @@
 [versions]
-guava = "33.3.1-jre"
 mockito-kotlin = "5.4.0"
 jooq = "3.19.15" # TODO sync with Spring
 
@@ -16,7 +15,6 @@ kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = 
 
 spring-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 
-guava = { module = "com.google.guava:guava", version.ref = "guava" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
 
 jooq-jackson-extensions = { module = "org.jooq:jooq-jackson-extensions", version.ref = "jooq" }

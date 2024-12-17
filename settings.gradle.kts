@@ -17,6 +17,10 @@ dependencyResolutionManagement {
 rootProject.name = "demo-r2dbc-jooq-quartz-liquibase"
 
 include("demo-common")
-include("demo-liquibase-lib", "demo-db-old")
-include("demo-db-new")
 include("demo-app")
+include(
+    "demo-db:demo-db-jooq-old",
+//    "demo-db:demo-db-jooq-new",
+    "demo-db:demo-db-liquibase",
+    "demo-db:demo-db-liquibase-lib",
+)

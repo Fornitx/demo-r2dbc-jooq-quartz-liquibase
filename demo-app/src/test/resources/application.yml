@@ -13,7 +13,7 @@ spring:
     url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
     user: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
-    change-log: "file:../etc/db/changelog/changelog-master.xml"
+    change-log: "liquibase/changelog/changelog-master.xml"
     default-schema: ${POSTGRES_SCHEMA}
   jooq:
     sql-dialect: postgres
