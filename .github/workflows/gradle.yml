@@ -1,0 +1,28 @@
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v3
+
+      - name: Gradle test
+        run: gradle test --show-version --no-daemon -Pkotlin-lang.version=2.1.0 -Pkotlin-logging.version=7.0.3 -Pspring-boot.version=3.4.0 -Pspring-dm.version=1.1.6 -Pkotlin-coroutines.version=1.9.0

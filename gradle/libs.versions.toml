@@ -1,5 +1,4 @@
 [versions]
-mockito-kotlin = "5.4.0"
 jooq = "3.19.15" # TODO sync with Spring
 
 [libraries]
@@ -14,8 +13,6 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
 
 spring-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
-
-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin" }
 
 jooq-jackson-extensions = { module = "org.jooq:jooq-jackson-extensions", version.ref = "jooq" }
 
