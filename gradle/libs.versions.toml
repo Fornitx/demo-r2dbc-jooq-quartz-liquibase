@@ -1,5 +1,5 @@
 [versions]
-jooq = "3.19.16"
+jooq = "3.19.18"
 
 [libraries]
 kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin-lang" }
