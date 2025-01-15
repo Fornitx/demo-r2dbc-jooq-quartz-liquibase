@@ -5,7 +5,9 @@ plugins {
 }
 
 val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
-require(jooqVersion == libs.versions.jooq.get()) { "jooqVersion not synchronized with Spring Boot" }
+require(jooqVersion == libs.versions.jooq.get()) {
+    "jooqVersion (${libs.versions.jooq.get()}) not synchronized with Spring Boot ($jooqVersion)"
+}
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
