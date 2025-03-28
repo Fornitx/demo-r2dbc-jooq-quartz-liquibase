@@ -29,8 +29,8 @@ jobs:
           gradle test
           --show-version
           --no-daemon
-          -Pkotlin-lang.version=2.1.10
+          -Pkotlin-lang.version=2.1.20
           -Pkotlin-logging.version=7.0.5
-          -Pspring-boot.version=3.4.3
+          -Pspring-boot.version=3.4.4
           -Pspring-dm.version=1.1.7
           -Pkotlin-coroutines.version=1.10.1
