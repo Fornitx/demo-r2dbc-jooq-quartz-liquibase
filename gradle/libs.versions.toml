@@ -1,5 +1,5 @@
 [versions]
-jooq = "3.19.19"
+jooq = "3.19.21"
 
 [libraries]
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
