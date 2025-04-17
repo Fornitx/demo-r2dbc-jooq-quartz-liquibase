@@ -1,8 +1,8 @@
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?schema=${POSTGRES_SCHEMA}
-    username: ${POSTGRES_USERNAME}
-    password: ${POSTGRES_PASSWORD}
+    url: r2dbc:postgresql://localhost:${TC_PG_PORT}/${TC_PG_DATABASE}
+    username: ${TC_PG_USERNAME}
+    password: ${TC_PG_PASSWORD}
     pool:
       enabled: true
       initial-size: 3
@@ -10,11 +10,11 @@ spring:
   liquibase:
     enabled: true
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
-    user: ${POSTGRES_USERNAME}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://localhost:${TC_PG_PORT}/${TC_PG_DATABASE}
+    user: ${TC_PG_USERNAME}
+    password: ${TC_PG_PASSWORD}
     change-log: "liquibase/changelog/changelog-master.xml"
-    default-schema: ${POSTGRES_SCHEMA}
+    default-schema: demo_schema
   jooq:
     sql-dialect: postgres
   quartz:
@@ -22,8 +22,6 @@ spring:
     job-store-type: jdbc
     jdbc:
       initialize-schema: always
-#      schema: classpath:org/quartz/impl/jdbcjobstore/tables_@@platform@@.sql
-#      schema: ${POSTGRES_SCHEMA}
     overwrite-existing-jobs: false
     properties:
       org:
@@ -31,9 +29,9 @@ spring:
           dataSource:
             quartzDataSource:
               driver: org.postgresql.Driver
-              URL: jdbc:postgresql://localhost:${POSTGRES_PORT}/${POSTGRES_DATABASE}?currentSchema=${POSTGRES_SCHEMA}
-              user: ${POSTGRES_USERNAME}
-              password: ${POSTGRES_PASSWORD}
+              URL: jdbc:postgresql://localhost:${TC_PG_PORT}/${TC_PG_DATABASE}
+              user: ${TC_PG_USERNAME}
+              password: ${TC_PG_PASSWORD}
               maxConnections: 1
               provider: hikaricp
           jobStore:

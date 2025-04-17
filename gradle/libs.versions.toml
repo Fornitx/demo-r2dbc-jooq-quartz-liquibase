@@ -1,12 +1,11 @@
 [versions]
-jooq = "3.19.21"
 
 [libraries]
 kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
 
 spring-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 
-jooq-jackson-extensions = { module = "org.jooq:jooq-jackson-extensions", version.ref = "jooq" }
+quarkus-junit4-mock = { module = "io.quarkus:quarkus-junit4-mock", version = "3.21.0" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-lang" }
@@ -16,4 +15,4 @@ spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dm = { id = "io.spring.dependency-management", version.ref = "spring-dm" }
 
 jooq-old = { id = "nu.studer.jooq", version = "10.0" }
-jooq-new = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq" }
+#jooq-new = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq" }

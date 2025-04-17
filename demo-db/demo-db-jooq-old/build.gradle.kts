@@ -1,13 +1,22 @@
 plugins {
     `java-library`
+//    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dm)
     alias(libs.plugins.jooq.old)
 }
 
+dependencyManagement {
+    imports {
+        mavenBom(libs.spring.bom.get().toString())
+    }
+}
+
+val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
+
 dependencies {
-    api(libs.jooq.jackson.extensions)
+    api("org.jooq:jooq-jackson-extensions:$jooqVersion")
     api(project(":demo-common"))
 
-    jooqGenerator(platform(libs.spring.bom))
     jooqGenerator("org.postgresql:postgresql")
     jooqGenerator("org.testcontainers:postgresql")
     jooqGenerator("org.slf4j:slf4j-simple")
@@ -16,7 +25,7 @@ dependencies {
 }
 
 jooq {
-    version.set(libs.versions.jooq.get())
+    version.set(jooqVersion)
 
     configurations {
         create("main") {

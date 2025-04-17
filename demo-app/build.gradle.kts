@@ -4,11 +4,6 @@ plugins {
     alias(libs.plugins.spring.dm)
 }
 
-val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
-require(jooqVersion == libs.versions.jooq.get()) {
-    "jooqVersion (${libs.versions.jooq.get()}) not synchronized with Spring Boot ($jooqVersion)"
-}
-
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
@@ -25,7 +20,8 @@ dependencies {
 
     implementation(libs.kotlin.logging)
 
-    implementation("org.jooq:jooq-jackson-extensions:$jooqVersion")
+    val jooqVersion = dependencyManagement.importedProperties["jooq.version"]
+    implementation("org.jooq:jooq-jackson-extensions")
     implementation("org.jooq:jooq-kotlin-coroutines:$jooqVersion")
 
     implementation(project(":demo-db:demo-db-jooq-old"))
