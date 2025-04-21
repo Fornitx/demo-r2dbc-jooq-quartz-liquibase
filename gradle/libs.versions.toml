@@ -14,5 +14,5 @@ kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotl
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
 spring-dm = { id = "io.spring.dependency-management", version.ref = "spring-dm" }
 
-jooq-old = { id = "nu.studer.jooq", version = "10.0" }
+jooq-old = { id = "nu.studer.jooq", version = "10.1" }
 #jooq-new = { id = "org.jooq.jooq-codegen-gradle", version.ref = "jooq" }
