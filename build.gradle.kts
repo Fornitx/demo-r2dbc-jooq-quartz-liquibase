@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.spring.dm)
 }
 
 allprojects {
@@ -11,6 +12,7 @@ allprojects {
 
 subprojects {
     apply(plugin = rootProject.libs.plugins.kotlin.jvm.get().pluginId)
+    apply(plugin = rootProject.libs.plugins.spring.dm.get().pluginId)
 
     java {
         toolchain {

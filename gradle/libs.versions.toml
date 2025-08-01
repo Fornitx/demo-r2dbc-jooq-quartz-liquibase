@@ -1,7 +1,7 @@
 [versions]
 
 [libraries]
-kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "kotlin-logging" }
+kotlin-logging = { module = "io.github.oshai:kotlin-logging", version.ref = "kotlin-logging" }
 
 spring-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
 

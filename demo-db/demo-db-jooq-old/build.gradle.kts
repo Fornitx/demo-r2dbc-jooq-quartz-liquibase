@@ -1,7 +1,5 @@
 plugins {
     `java-library`
-//    alias(libs.plugins.spring.boot) apply false
-    alias(libs.plugins.spring.dm)
     alias(libs.plugins.jooq.old)
 }
 

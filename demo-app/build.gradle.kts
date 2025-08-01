@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.kotlin.spring)
     alias(libs.plugins.spring.boot)
-    alias(libs.plugins.spring.dm)
 }
+
+//ext["kotlin.version"] = libs.versions.kotlin.lang.get()
+//ext["kotlin-coroutines.version"] = libs.versions.kotlin.coroutines.get()
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -16,7 +18,9 @@ dependencies {
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j")
 
     implementation(libs.kotlin.logging)
 
